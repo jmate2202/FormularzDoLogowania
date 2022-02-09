@@ -20,24 +20,56 @@ namespace FormularzDoLogowania
     /// </summary>
     public partial class MainWindow : Window
     {
+        List<Uzytkownik> Uzytkownicy;
         public MainWindow()
         {
             InitializeComponent();
+            Uzytkownicy = new List<Uzytkownik>()
+            {
+                new Uzytkownik(){Id=0,Login="admin",Haslo="1234",Rola=1},
+                new Uzytkownik(){Id=1,Login="admin12",Haslo="1234",Rola=1},
+                new Uzytkownik(){Id=2,Login="testN",Haslo="1234",Rola=2},
+                new Uzytkownik(){Id=3,Login="testU",Haslo="1234",Rola=3},
+            };
         }
 
         private void BT_Zaloguj_Click(object sender, RoutedEventArgs e)
         {
             var login = TB_Login.Text;
             var haslo = TB_Haslo.Text;
-            if(login=="admin" && haslo == "1234")
+            var uzytkownik = Uzytkownicy.Find(x => x.Login == login && x.Haslo == haslo);
+
+            if(uzytkownik!=null)
             {
-                MessageBox.Show("zalogowano");
+                if (uzytkownik.Rola == 1)
+                {
+                    var okno = new OknoAdmina(login);
+                    okno.Show();
+                    this.Close();
+                }
+                else if(uzytkownik.Rola==2)
+                {
+                    MessageBox.Show("Tutaj powinno wyskoczyc okno z panelem dla nauczyciela");
+                }
+                else
+                {
+                    MessageBox.Show("Tutaj powinno wyskoczyc okno z panalem dla ucznia");
+                }
+               
+
             }
             else
             {
                 MessageBox.Show("blad logowania");
             }
 
+        }
+        class Uzytkownik
+        {
+            public int Id { get; set; }
+            public string Login { get; set; }
+            public string Haslo { get; set; }
+            public int Rola { get; set; }//1-admin 2-nauczyciel 3-uczen
         }
     }
 }
