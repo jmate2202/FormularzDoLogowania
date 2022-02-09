@@ -6,7 +6,24 @@
         xmlns:local="clr-namespace:FormularzDoLogowania"
         mc:Ignorable="d"
         Title="Logowanie" Height="450" Width="500">
-    <Grid>
-
+    <Grid Background="Bisque">
+        <StackPanel VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+            <Label FontSize="20">Login:</Label>
+            <TextBox x:Name="TB_Login"
+                    Width="200"
+                     FontSize="20"
+                ></TextBox>
+            <Label FontSize="20">Haslo:</Label>
+            <TextBox x:Name="TB_Haslo"
+                    Width="200"
+                     FontSize="20"
+                ></TextBox>
+            <Button Content="Zaloguj"
+                    FontSize="20"
+                    Margin="10"
+                    Click="BT_Zaloguj_Click"
+                    ></Button>
+        </StackPanel>
     </Grid>
 </Window>

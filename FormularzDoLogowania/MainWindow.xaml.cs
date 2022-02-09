@@ -24,5 +24,20 @@ namespace FormularzDoLogowania
         {
             InitializeComponent();
         }
+
+        private void BT_Zaloguj_Click(object sender, RoutedEventArgs e)
+        {
+            var login = TB_Login.Text;
+            var haslo = TB_Haslo.Text;
+            if(login=="admin" && haslo == "1234")
+            {
+                MessageBox.Show("zalogowano");
+            }
+            else
+            {
+                MessageBox.Show("blad logowania");
+            }
+
+        }
     }
 }
